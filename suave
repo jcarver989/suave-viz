@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar /Users/jcarver/code/suave-viz/target/scala-2.10/suave-viz-assembly-0.1-SNAPSHOT.jar "$@"
+java -jar /Users/jcarver/code/suave-viz/target/scala-2.11/suaveviz-assembly-0.1.0.jar "$@"
