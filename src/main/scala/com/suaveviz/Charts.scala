@@ -2,6 +2,25 @@ package com.suaveviz
 
 object Charts {
 
+  private def legend(data: DataSet): String = {
+    val names = data.values.zipWithIndex.map { case (DoublesColumn(name, _), i) => "'" + name + "'" }
+    s"""
+     var div = document.getElementById("chart")
+     var legend = document.createElement("div")
+
+     var labels = [${names.mkString(",")}]
+     for (var i = 0; i < labels.length; i++) {
+        var label = document.createElement("span")
+        label.classList.add("series-" + i)
+        label.innerText = labels[i]
+        legend.appendChild(label)
+     }      
+
+     legend.classList.add("legend")
+     div.appendChild(legend)
+    """
+  }
+
   def histogram(data: DataSet, options: ChartOptions): String = {
     val values = data.values(0).values
     val domain = options.domain.getOrElse((values.min, values.max + 1))
@@ -23,6 +42,8 @@ object Charts {
     val bars = barGroups.map { barGroup => s"[${barGroup.mkString(",")}]" }
 
     s"""
+    ${legend(data)}
+
     var chart = new Suave.BarChart("#chart", {
      ticks: ${options.ticks}
     })
@@ -49,6 +70,8 @@ object Charts {
     }
 
     s"""
+    ${legend(data)}
+    
     var chart = new Suave.LineChart(
     "#chart", 
     { 
@@ -76,6 +99,8 @@ object Charts {
     }
 
     s"""
+    ${legend(data)}
+
     var chart = new Suave.LineChart(
     "#chart", 
     { 

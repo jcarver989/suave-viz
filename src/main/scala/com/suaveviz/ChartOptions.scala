@@ -14,6 +14,7 @@ object ChartOptions {
     "chart",
     "ticks",
     "dots",
+    "dotSize",
     "smooth",
     "domain")
 
