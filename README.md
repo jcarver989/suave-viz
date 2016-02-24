@@ -88,29 +88,29 @@ mysql -h mysql-server.com -e "use prod_db; SELECT SUM(price) from product_sales 
  suave [input file] --option1 --option2 value
 ```
 
-### --chart [string]
-#### available values: line, bar, scatter or histogram
-#### default value: line
+#### --chart [string]
+##### available values: line, bar, scatter or histogram
+##### default value: line
 Sets the chart type to graph. With the exception of histogram, which expects a single input column, all chart types expect at least 2 columns (x and y values).
 
-### --no-header
-#### default value: false
+#### --no-header
+##### default value: false
 If your data does not include a header line (first line is the names of each column), set this flag.
 
-### `--ticks [integer]`
-#### default: 10
+#### `--ticks [integer]`
+##### default: 10
 Sets how many "ticks" to draw on the x-axis.
 
-### --dots
-#### default: not enabled
+#### --dots
+##### default: not enabled
 If `--chart line` is selected, this option draws a circle that shows a tooltip on hover for each point in the chart.
 
-### `--smooth`
-#### default: not enabled
+#### `--smooth`
+##### default: not enabled
 If `--chart line` is selected, this smooths the chart lines. 
 
-### `--dotSize [integer]`
-#### default: 6
+#### `--dotSize [integer]`
+##### default: 6
 If `--chart line` or `--chart scatter` is selected, this controls how big the circles for points are. 
 
 ### Histogram specific options:
