@@ -24,19 +24,9 @@ Yes. It's fantastic. It's like having a freaking data lightsaber that's even eas
 2. Put the `suave` script on your path
 3. Use it!
 
-## Data format
+## Basic Usage
 
-Suave Viz makes some basic assumptions about the data you pass it: 
-
-- The data is in TSV format (tab separated columns) 
-- The first line in the file is a header with names for each column (you can toggle this assumption)
-- The first column in the file are your x-axis labels. These can be any text string
-- Each column past the first is a series (ex separate line) of y-values you'd like to graph, they must be a number
-- Histograms expect data with only a single column, every other chart type expects at least 2 columns (x and y)
-
-For example to graph some stock prices by date we'd pass Suave Viz this file: 
-
-stocks.tsv
+Assume we have a TSV file of stock data: stocks.tsv
 ```
 Date  Price
 2016-01-01  10
@@ -46,20 +36,13 @@ Date  Price
 2016-01-05  14
 ```
 
-Then to graph the data with the default chart type (line) we'd do:
+Then to graph dates on the x-axis and prices on the y with the default line chart, we simply do:
 
 ```bash
 suave stocks.tsv 
 ```
 
-if we wanted a scatter plot instead, we'd simply do:
-```bash
-suave stocks.tsv --chart scatter
-```
-
-### More Examples
-
-#### Multi-series line graph
+And if there were multiple stocks we wanted to graph (multiple lines), we'd format the data like this:
 
 stocks.tsv
 ```
@@ -71,14 +54,35 @@ Date  Price FBX TWTR
 2016-01-05  14  0
 ```
 
-```bash
-suave stocks.tsv --chart line
 ```
+suave stocks.tsv
+```
+
+if we wanted a scatter plot instead, we'd simply do:
+```bash
+suave stocks.tsv --chart scatter
+```
+
+Suave Viz makes some assumptions about the data you pass it: 
+
+- The data is in TSV format (tab separated columns) 
+- The first line in the file is a header with names for each column (you can toggle this assumption)
+- The first column in the file are your x-axis labels. These can be any text string
+- Each column past the first is a series (ex separate line) of y-values you'd like to graph, they must be a number
+- Histograms expect data with only a single column, every other chart type expects at least 2 columns (x and y)
+
+### More Examples
+Suave Viz supports input from stdin as well, so you can pipe data into it from anywhere.
 
 #### Graph a SQL query
 
 ```bash
 mysql -h mysql-server.com -e "use prod_db; SELECT SUM(price) from product_sales GROUP BY day;" | suave --chart bar
+```
+
+#### Graph the data from an API that returns TSV
+```bash
+curl http://some-api/some-data | suave --chart histogram 
 ```
 
 ## API Documentation
