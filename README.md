@@ -65,6 +65,7 @@ if we wanted a scatter plot instead, we'd simply do:
 suave stocks.tsv --chart scatter
 ```
 
+### Data Format
 Suave Viz makes some assumptions about the data you pass it: 
 
 - The data is in TSV format (tab separated columns) 
