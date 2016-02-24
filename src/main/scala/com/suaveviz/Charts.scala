@@ -62,4 +62,31 @@ object Charts {
     })
     """
   }
+
+  def scatter(data: DataSet, options: ChartOptions): String = {
+    val series = data.values.map {
+      case DoublesColumn(label, values) =>
+        s"""{ 
+              label: '${label}', 
+              values: [${values.mkString(",")}], 
+              dots: true,
+              line: false
+            }
+         """
+    }
+
+    s"""
+    var chart = new Suave.LineChart(
+    "#chart", 
+    { 
+      ticks: ${options.ticks},
+      dotSize: ${options.dotSize}
+    })
+
+    chart.draw({ 
+      labels: [${data.labels.values.map(v => s"'${v}'").mkString(",")}],
+      lines: [${series.mkString(",\n")}]
+    })
+    """
+  }
 }

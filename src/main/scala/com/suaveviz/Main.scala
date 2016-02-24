@@ -16,13 +16,19 @@ object Main extends App {
   }
 
   val options = ChartOptions.parse(args)
-  val lines = (for (ln <- io.Source.stdin.getLines) yield ln).toVector
+
+  val lines = options.inputFile match {
+    case Some(f) => io.Source.fromFile(f).getLines.toVector
+    case None => (for (ln <- io.Source.stdin.getLines) yield ln).toVector
+  }
+
   val data = DataSet.parse(lines)
 
   val chart = options.chartType match {
-    case Line => Charts.line(data, options)
-    case Bar => Charts.bar(data, options)
-    case Histogram => Charts.histogram(data, options)
+    case "line" => Charts.line(data, options)
+    case "bar" => Charts.bar(data, options)
+    case "histogram" => Charts.histogram(data, options)
+    case "scatter" => Charts.scatter(data, options)
     case _ => sys.error("unsupported chart type")
   }
 

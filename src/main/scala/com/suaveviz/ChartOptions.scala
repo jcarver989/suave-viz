@@ -1,12 +1,13 @@
 package com.suaveviz
 
 case class ChartOptions(
-  chartType: ChartType,
+  chartType: String,
   dots: Boolean,
   dotSize: Int,
   smooth: Boolean,
   ticks: Int,
-  domain: Option[(Double, Double)])
+  domain: Option[(Double, Double)],
+  inputFile: Option[String])
 
 object ChartOptions {
   val validOptions = Vector(
@@ -22,14 +23,6 @@ object ChartOptions {
   }
 
   def fromMap(options: Map[String, String]): ChartOptions = {
-    val chartType = options.get("chart") match {
-      case Some("line") => Line
-      case Some("bar") => Bar
-      case Some("histogram") => Histogram
-      case None => Line
-      case _ => sys.error("Unsupported chart type")
-    }
-
     val domain = options.get("domain").map {
       _.split(",") match {
         case Array(x1, x2) => (x1.toDouble, x2.toDouble)
@@ -38,20 +31,34 @@ object ChartOptions {
     }
 
     ChartOptions(
-      chartType = chartType,
+      chartType = options.getOrElse("chart", "line"),
       dots = options.get("dots").map { _.toBoolean }.getOrElse(false),
       dotSize = options.get("dotSize").map { _.toInt }.getOrElse(4),
       smooth = options.get("smooth").map { _.toBoolean }.getOrElse(false),
       ticks = options.get("ticks").map { _.toInt }.getOrElse(10),
-      domain = domain
+      domain = domain,
+      inputFile = options.get("input")
     )
   }
 
   private def parse(args: List[String], map: Map[String, String] = Map.empty): Map[String, String] = {
     args match {
+      // N-args
+      case opt1 :: opt2 :: tail if validOption(opt1) && validOption(opt2) => parse(opt2 +: tail, map + (opt1.drop(2) -> "true"))
+      case inputFile :: opt :: tail if !validOption(inputFile) && validOption(opt) => parse(opt +: tail, map + ("input" -> inputFile))
+      case opt :: value :: tail if validOption(opt) => parse(tail, map + (opt.drop(2) -> value))
+
+      // 1 arg
+      case opt :: Nil if validOption(opt) => map + (opt.drop(2) -> "true")
+      case inputFile :: Nil => map + ("input" -> inputFile)
+
+      // no args
       case Nil => map
-      case key :: value :: tail if key.startsWith("--") && validOptions.exists { key.endsWith } => parse(tail, map + (key.drop(2) -> value))
       case _ => sys.error("Invalid option")
     }
+  }
+
+  private def validOption(name: String): Boolean = {
+    name.startsWith("--") && validOptions.exists { o => o == name.drop(2) }
   }
 }
