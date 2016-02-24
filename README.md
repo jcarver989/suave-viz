@@ -1,9 +1,9 @@
 # Suave Viz
 
 ## Visualize any dataset in seconds
-Suave Viz exists because there's a lack of good, simple tools for exploratory data visualization. Existing stuff either requires way too much effort to get a decent chart (ahem...ggplot) or you're stuck in some proprietary vendor's crappy dashboard UI.
+Suave Viz exists because there's a lack of good tools for exploratory data visualization. Existing tools require way too much effort to get a decent chart (ahem...ggplot) or trap you in some proprietary vendor's crappy dashboard UI.
 
-Suave Viz solves that pain by giving you a dead-simple command-line tool for data visualization. Just pass it any file or stdin data in TSV format and Suave Viz opens a great looking, interactive chart in your browser. 
+Suave Viz solves that pain by giving you a dead-simple command-line tool for data visualization. Just pass some data in TSV format and Suave Viz opens a great looking, interactive chart in your browser. 
 
 It's built on [Suave Charts](http://suavecharts.com) & D3.js.
 
@@ -28,12 +28,12 @@ Yes. It's fantastic. It's like having a freaking data lightsaber that's even eas
 
 Assume we have a TSV file of stock data: stocks.tsv
 ```
-Date  Price
-2016-01-01  10
-2016-01-02  11
-2016-01-03  12
-2016-01-04  13
-2016-01-05  14
+Date	Price
+2016-01-01	10
+2016-01-02	11
+2016-01-03	12
+2016-01-04	13
+2016-01-05	14
 ```
 
 Then to graph dates on the x-axis and prices on the y with the default line chart, we simply do:
@@ -46,12 +46,12 @@ And if there were multiple stocks we wanted to graph (multiple lines), we'd form
 
 stocks.tsv
 ```
-Date  Price FBX TWTR
-2016-01-01  10  18
-2016-01-02  11  17
-2016-01-03  12  10
-2016-01-04  13  5
-2016-01-05  14  0
+Date	FBX	TWTR
+2016-01-01	10	18
+2016-01-02	11	17
+2016-01-03	12	10
+2016-01-04	13	5
+2016-01-05	14	0
 ```
 
 ```
@@ -101,7 +101,7 @@ Sets the chart type to graph. With the exception of histogram, which expects a s
 ##### default value: false
 If your data does not include a header line (first line is the names of each column), set this flag.
 
-#### `--ticks [integer]`
+#### --ticks [integer]
 ##### default: 10
 Sets how many "ticks" to draw on the x-axis.
 
@@ -109,11 +109,11 @@ Sets how many "ticks" to draw on the x-axis.
 ##### default: not enabled
 If `--chart line` is selected, this option draws a circle that shows a tooltip on hover for each point in the chart.
 
-#### `--smooth`
+#### --smooth
 ##### default: not enabled
 If `--chart line` is selected, this smooths the chart lines. 
 
-#### `--dotSize [integer]`
+#### --dotSize [integer]
 ##### default: 6
 If `--chart line` or `--chart scatter` is selected, this controls how big the circles for points are. 
 
