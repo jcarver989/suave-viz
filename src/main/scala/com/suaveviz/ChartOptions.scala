@@ -8,7 +8,8 @@ case class ChartOptions(
   smooth: Boolean,
   ticks: Int,
   domain: Option[(Double, Double)],
-  inputFile: Option[String])
+  inputFile: Option[String],
+  header: Boolean)
 
 object ChartOptions {
   val validOptions = Vector(
@@ -18,7 +19,8 @@ object ChartOptions {
     "dotSize",
     "smooth",
     "domain",
-    "bins")
+    "bins",
+    "no-header")
 
   def parse(args: Array[String]): ChartOptions = {
     val options = new OptionParser(validOptions).parse(args)
@@ -38,7 +40,8 @@ object ChartOptions {
       smooth = options.get("smooth").map { _.toBoolean }.getOrElse(false),
       ticks = options.get("ticks").map { _.toInt }.getOrElse(10),
       domain = domain,
-      inputFile = options.get("input")
+      inputFile = options.get("input"),
+      header = !(options.get("no-header").map { _.toBoolean }.getOrElse(false))
     )
   }
 }

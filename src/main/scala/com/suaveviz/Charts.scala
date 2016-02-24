@@ -22,7 +22,7 @@ object Charts {
   }
 
   def histogram(data: DataSet, options: ChartOptions): String = {
-    val values = data.rows(0)
+    val values = data.transpose.rows(0)
     val domain = options.domain.getOrElse((values.min, values.max + 1))
 
     s"""

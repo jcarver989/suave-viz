@@ -14,11 +14,6 @@ case class DataSet(rows: Seq[Seq[String]], header: Option[Seq[String]]) {
 }
 
 object DataSet {
-  def parseFile(file: String): DataSet = {
-    val lines = scala.io.Source.fromFile(file).getLines.toVector
-    parse(lines)
-  }
-
   def parse(lines: Seq[String], hasHeader: Boolean = true): DataSet = {
     val rows = lines.map { _.split("\t"): Seq[String] }
     if (hasHeader) DataSet(rows.tail, Some(rows.head)) else DataSet(rows, None)
