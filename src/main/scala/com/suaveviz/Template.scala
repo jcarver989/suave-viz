@@ -2,12 +2,12 @@ package com.suaveviz
 
 object Template {
   val css = Vector(
-    "/Users/jcarver/code/suave-charts/dist/suave-charts.css"
+    "http://suavecharts.com/dist/suave-charts.css"
   ).map { f => s"<link href='${f}' rel='stylesheet' />" }
 
   val js = Vector(
     "http://suavecharts.com/js/vendor/d3.min.js",
-    "/Users/jcarver/code/suave-charts/dist/suave-charts.min.js"
+    "http://suavecharts.com/dist/suave-charts.min.js"
   ).map { f => s"<script src='${f}'></script>" }
 
   def render(code: String): String = {
