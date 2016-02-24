@@ -5,8 +5,8 @@ case class DataSet(rows: Seq[Seq[String]], header: Option[Seq[String]]) {
     val nColumns = rows(0).length
     val nRows = rows.length
 
-    val data = for (c <- 0 to nColumns-1) yield {
-      for (r <- 0 to nRows-1) yield rows(r)(c)
+    val data = for (c <- 0 until nColumns) yield {
+      for (r <- 0 until nRows) yield rows(r)(c)
     }
 
     DataSet(data, header)
