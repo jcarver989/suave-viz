@@ -27,7 +27,7 @@ object Charts {
 
     s"""
     var values = [${values.mkString(",")}]
-    var chart = new Suave.Histogram("#chart", { domain: [${domain._1}, ${domain._2}] })
+    var chart = new Suave.Histogram("#chart", { domain: [${domain._1}, ${domain._2}], bins: ${options.bins} })
     chart.draw({
       values: values
     })

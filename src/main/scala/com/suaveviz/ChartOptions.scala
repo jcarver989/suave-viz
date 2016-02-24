@@ -3,6 +3,7 @@ package com.suaveviz
 case class ChartOptions(
   chartType: String,
   dots: Boolean,
+  bins: Int,
   dotSize: Int,
   smooth: Boolean,
   ticks: Int,
@@ -16,7 +17,8 @@ object ChartOptions {
     "dots",
     "dotSize",
     "smooth",
-    "domain")
+    "domain",
+    "bins")
 
   def parse(args: Array[String]): ChartOptions = {
     val options = parse(args.toList)
@@ -33,6 +35,7 @@ object ChartOptions {
 
     ChartOptions(
       chartType = options.getOrElse("chart", "line"),
+      bins = options.get("bins").map { _.toInt }.getOrElse(10),
       dots = options.get("dots").map { _.toBoolean }.getOrElse(false),
       dotSize = options.get("dotSize").map { _.toInt }.getOrElse(4),
       smooth = options.get("smooth").map { _.toBoolean }.getOrElse(false),

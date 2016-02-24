@@ -16,14 +16,12 @@ object Main extends App {
   }
 
   val options = ChartOptions.parse(args)
-
   val lines = options.inputFile match {
     case Some(f) => io.Source.fromFile(f).getLines.toVector
     case None => (for (ln <- io.Source.stdin.getLines) yield ln).toVector
   }
 
   val data = DataSet.parse(lines)
-
   val chart = options.chartType match {
     case "line" => Charts.line(data, options)
     case "bar" => Charts.bar(data, options)
