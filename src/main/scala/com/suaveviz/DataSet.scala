@@ -2,20 +2,11 @@ package com.suaveviz
 
 case class DataSet(rows: Seq[Seq[String]], header: Option[Seq[String]]) {
   def transpose(): DataSet = {
-    val data = scala.collection.mutable.Buffer[Seq[String]]()
     val nColumns = rows(0).length
     val nRows = rows.length
-    var c = 0
-    while (c < nColumns) {
-      val newRow = scala.collection.mutable.Buffer[String]()
-      var r = 0
-      while (r < nRows) {
-        newRow += rows(r)(c)
-        r += 1
-      }
 
-      data += newRow
-      c += 1
+    val data = for (c <- 0 to nColumns-1) yield {
+      for (r <- 0 to nRows-1) yield rows(r)(c)
     }
 
     DataSet(data, header)
