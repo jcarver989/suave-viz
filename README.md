@@ -1,6 +1,6 @@
 # Suave Viz: Visualize any dataset in seconds
 
-![example](https://raw.githubusercontent.com/jcarver989/suave-viz/master/suave-viz.gif)
+![example](https://raw.githubusercontent.com/jcarver989/suave-viz/master/docs/suave-viz.gif)
 
 Suave Viz exists because there's a lack of good tools for exploratory data visualization. Existing tools require way too much effort to get a decent chart (ahem...ggplot) or trap you in some proprietary vendor's crappy dashboard UI.
 
@@ -37,7 +37,7 @@ All the examples below use data found in the example-data directory. So you shou
 ### Your first chart
 Assume we have a TSV file of stock data: stocks.tsv
 
-`cat example-data/stocks.tsv | head -n 10`
+`cat docs/example-data/stocks.tsv | head -n 10`
 
 ```
 date	close
@@ -55,14 +55,14 @@ date	close
 Then to graph dates on the x-axis and prices on the y with the default line chart, we simply do:
 
 ```bash
-suave example-data/stocks.tsv 
+suave docs/example-data/stocks.tsv 
 ```
-![linechart](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/line-chart.jpg)
+![linechart](https://raw.githubusercontent.com/jcarver989/suave-viz/master/docs/images/line-chart.jpg)
 
 ### Multiple series 
 And if there were multiple stocks we wanted to graph (multiple lines), we'd format the data like this:
 
-`cat example-data/multi-series.tsv | head -n 10`
+`cat docs/example-data/multi-series.tsv | head -n 10`
 
 ```
 date	APPL	TWTTR	FBX
@@ -79,23 +79,23 @@ date	APPL	TWTTR	FBX
 
 Then we'd chart it like so:
 ```
-suave example-data/multi-series.tsv
+suave docs/example-data/multi-series.tsv
 ```
 
-![multiseries](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/multi-series-line-chart.jpg)
+![multiseries](https://raw.githubusercontent.com/jcarver989/suave-viz/master/docs/images/multi-series-line-chart.jpg)
 
 if we wanted a scatter plot of the same data instead, we'd simply do:
 ```bash
 suave stocks.tsv --chart scatter
 ```
 
-![scatter](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/scatter.jpg)
+![scatter](https://raw.githubusercontent.com/jcarver989/suave-viz/master/docs/images/scatter.jpg)
 
 ### Histograms
 
 Histograms require that your data be in a single column, like so: 
 
-`cat example-data/hist.tsv | head -n 10`
+`cat docs/example-data/hist.tsv | head -n 10`
 
 ```
 Randoms
@@ -111,9 +111,9 @@ Randoms
 ```
 
 Then we can get a histogram easily with:
-`suave example-data/hist.tsv --chart histogram`
+`suave docs/example-data/hist.tsv --chart histogram`
 
-![histogram](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/histogram.jpg)
+![histogram](https://raw.githubusercontent.com/jcarver989/suave-viz/master/docs/images/histogram.jpg)
 
 
 ### More Examples
