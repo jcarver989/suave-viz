@@ -110,44 +110,44 @@ Note if you do not provide an input file, Suave Viz will expect you to provide i
  cat some-file.tsv | suave --option1 --option2 value
 ```
 
-#### --chart [string]
+##### --chart [string]
 ##### available values: line, bar, scatter or histogram
 ##### default value: line
 Sets the chart type to graph. With the exception of histogram, which expects a single input column, all chart types expect at least 2 columns (x and y values).
 
-#### --no-header
+##### --no-header
 ##### default value: false
 If your data does not include a header line (first line is the names of each column), set this flag.
 
 ### Line and Scatter chart specific options
 
-#### --ticks [integer]
+##### --ticks [integer]
 ##### default: 10
 Sets how many "ticks" to draw on the x-axis.
 
-#### --dots
+##### --dots
 ##### default: not enabled
 If `--chart line` is selected, this option draws a circle that shows a tooltip on hover for each point in the chart.
 
-#### --smooth
+##### --smooth
 ##### default: not enabled
 If `--chart line` is selected, this smooths the chart lines. 
 
-#### --dotSize [integer]
+##### --dotSize [integer]
 ##### default: 6
 If `--chart line` or `--chart scatter` is selected, this controls how big the circles for points are. 
 
 ### Bar chart specific options
 
-#### --horizontal
+##### --horizontal
 ##### default: not enabled
 Rotates the bar chart 90deg so the bars extend horizontally instead of vertically. This is useful if you have many bars in your chart. 
 
 ### Histogram specific options:
 
-#### --bins [integer]
+##### --bins [integer]
 ##### default: 10
 Sets how many evenly spaced buckets to use in the histogram. 
 
-#### --domain [integer, integer]
+##### --domain [integer, integer]
 Sets the range of the buckets to use, ex `--domain -10, 10` would render a histogram with buckets ranging from -10 to 10. By default Suave Viz will try to guess the domain based on your input data, this option allows finer grained control if you'd like to "zoom in" or "zoom out" on your histogram.  
