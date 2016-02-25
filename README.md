@@ -1,6 +1,4 @@
-# Suave Viz
-
-## Visualize any dataset in seconds
+# Suave Viz: Visualize any dataset in seconds
 
 ![example](https://raw.githubusercontent.com/jcarver989/suave-viz/master/suave-viz.gif)
 
