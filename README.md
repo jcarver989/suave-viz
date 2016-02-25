@@ -72,15 +72,6 @@ if we wanted a scatter plot instead, we'd simply do:
 suave stocks.tsv --chart scatter
 ```
 
-### Data Format
-Suave Viz makes some assumptions about the data you pass it: 
-
-- The data is in TSV format (tab separated columns) 
-- The first line in the file is a header with names for each column (you can toggle this assumption)
-- The first column in the file are your x-axis labels. These can be any text string
-- Each column past the first is a series (ex separate line) of y-values you'd like to graph, they must be a number
-- Histograms expect data with only a single column, every other chart type expects at least 2 columns (x and y)
-
 ### More Examples
 Suave Viz supports input from stdin as well, so you can pipe data into it from anywhere.
 
@@ -94,6 +85,16 @@ mysql -h mysql-server.com -e "use prod_db; SELECT SUM(price) from product_sales 
 ```bash
 curl http://some-api/some-data | suave --chart histogram 
 ```
+
+### Data Format
+Suave Viz makes some assumptions about the data you pass it: 
+
+- The data is in TSV format (tab separated columns) 
+- The first line in the file is a header with names for each column (you can toggle this assumption)
+- The first column in the file are your x-axis labels. These can be any text string
+- Each column past the first is a series (ex separate line) of y-values you'd like to graph, they must be a number
+- Histograms expect data with only a single column, every other chart type expects at least 2 columns (x and y)
+
 
 ## API Documentation
 
