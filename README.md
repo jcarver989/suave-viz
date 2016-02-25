@@ -81,6 +81,31 @@ suave stocks.tsv --chart scatter
 
 ![scatter](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/scatter.jpg)
 
+### Histograms
+
+Assume we have a tsv file containing 1 column of data: 
+
+`cat example-data/hist.tsv | head -n 10`
+
+```
+Randoms
+2.210726696229596
+2.5810759339537053
+2.2380417870117735
+1.5729785156579128
+2.0729916188477784
+0.9234921712955737
+2.6866809729336065
+2.4665987398546467
+2.9494573633563905
+```
+
+Then we can get a histogram easily:
+`suave example-data/hist.tsv --chart histogram`
+
+![histogram](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/histogram.jpg)
+
+
 ### More Examples
 Suave Viz supports input from stdin as well, so you can pipe data into it from anywhere.
 
