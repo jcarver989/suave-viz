@@ -110,7 +110,7 @@ Note if you do not provide an input file, Suave Viz will expect you to provide i
  cat some-file.tsv | suave --option1 --option2 value
 ```
 
-##### --chart [string]
+##### --chart [line, bar, histogram, scatter]
 Sets the chart type to graph. With the exception of histogram, which expects a single input column, all chart types expect at least 2 columns (x and y values). The available chart types are: `line`, `bar`, `scatter` and `histogram`. The default chart type is `line`.
 
 ##### --no-header
