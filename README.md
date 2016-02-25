@@ -99,6 +99,12 @@ curl http://some-api/some-data | suave --chart histogram
  suave [input file] --option1 --option2 value
 ```
 
+Note if you do not provide an input file, Suave Viz will expect you to provide input through stdin, ex through a pipe:
+
+```bash
+ cat some-file.tsv | suave --option1 --option2 value
+```
+
 #### --chart [string]
 ##### available values: line, bar, scatter or histogram
 ##### default value: line
