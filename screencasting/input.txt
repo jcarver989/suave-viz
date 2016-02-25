@@ -1,0 +1,21 @@
+# We all analyze data on a daily basis...
+# Oh how serendipitous! Some data just arrived, let's explore it...
+cat example-data/hist.tsv | head -n 10 
+
+# We can now conclude this file contains numbers, therefore we're data scientists 
+# Let's examine the distribution of these data with a histogram...
+
+# Wait how do we get a histogram?
+#   a) Grab some graph paper, use that high school art class...oh wait, terrible idea 
+#   b) Spend a year learning ggplot2, then make a histogram
+#   c) Import into Google Sheets or Excel...who's got time for click-pointy shit?
+
+# I wish there was a faster, easier way to get a nice graph of some data
+# My wishlist:
+#   Chart histograms, line, bar, and scatter plots with 1 command
+#   Support UNIX pipes, so data can be fed in from anywhere
+#   Dead simple to use, learn it completely in 2-3 minutes
+
+# If such a tool existed, it'd be suave, so the command would obviously be called 'suave' 
+# I'd use it like this:
+suave example-data/hist.tsv --chart histogram

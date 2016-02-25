@@ -1,0 +1,5 @@
+# Oh wait...it DOES exit!
+# What else can it do? Let's try a line chart on some stock data...
+cat example-data/stocks.tsv | head -n 10
+
+suave example-data/stocks.tsv --chart line

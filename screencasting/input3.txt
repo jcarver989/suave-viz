@@ -1,0 +1,8 @@
+# Ok that's pretty sweet, but what if I want to graph multiple lines (1 per column in my data)? 
+# No problem!
+cat example-data/multi-series.tsv | head -n 10
+
+# Suave Viz assumes each column beyond the first is its own line
+# So you just call it, and APPL, TWTTR and FBX will get their own line...
+
+suave example-data/multi-series.tsv --chart line
