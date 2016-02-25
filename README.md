@@ -49,28 +49,37 @@ Then to graph dates on the x-axis and prices on the y with the default line char
 ```bash
 suave stocks.tsv 
 ```
+![linechart](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/line-chart.jpg)
 
 ### Multiple series 
 And if there were multiple stocks we wanted to graph (multiple lines), we'd format the data like this:
 
 stocks.tsv
 ```
-Date	FBX	TWTR
-2016-01-01	10	18
-2016-01-02	11	17
-2016-01-03	12	10
-2016-01-04	13	5
-2016-01-05	14	0
+date	APPL	TWTTR	FBX
+20111001	63.4	62.7	72.2
+20111002	58.0	59.9	67.7
+20111003	53.3	59.1	69.4
+20111004	55.7	58.8	68.0
+20111005	64.2	58.7	72.4
+20111006	58.8	57.0	77.0
+20111007	57.9	56.7	82.3
+20111008	61.8	56.8	78.9
+20111009	69.3	56.7	68.8
 ```
 
 ```
 suave stocks.tsv
 ```
 
+![multiseries](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/multi-series-line-chart.jpg)
+
 if we wanted a scatter plot instead, we'd simply do:
 ```bash
 suave stocks.tsv --chart scatter
 ```
+
+![scatter](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/scatter.jpg)
 
 ### More Examples
 Suave Viz supports input from stdin as well, so you can pipe data into it from anywhere.
