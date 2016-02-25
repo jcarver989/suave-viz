@@ -24,9 +24,15 @@ Yes. It's fantastic. It's like having a freaking data lightsaber that's even eas
 
 ## Getting started
 
-1. Download the Suave viz jar from: ...
-2. Put the `suave` script on your path
-3. Use it!
+1. Download the zip from the [latest release](https://github.com/jcarver989/suave-viz/releases): 
+2. Extract the zip and add the bin directory to your path
+
+For example: in your `~/.bash_profile`
+```bash
+export PATH=$PATH:~/suave-viz-1.0.0/bin
+```
+
+3. Use it! You now have the `suave` command on your path
 
 ## Basic Usage
 
