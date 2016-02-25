@@ -32,29 +32,38 @@ export PATH=$PATH:~/suave-viz-1.0.0/bin
 That's it. You now have the `suave` command on your path
 
 ## Basic Usage
+All the examples below use data found in the example-data directory. So you should be able to run these examples yourself.
 
 ### Your first chart
 Assume we have a TSV file of stock data: stocks.tsv
+
+`cat example-data/stocks.tsv | head -n 10`
+
 ```
-Date	Price
-2016-01-01	10
-2016-01-02	11
-2016-01-03	12
-2016-01-04	13
-2016-01-05	14
+date	close
+24-Apr-07	93.24
+25-Apr-07	95.35
+26-Apr-07	98.84
+27-Apr-07	99.92
+30-Apr-07	99.80
+1-May-07	99.47
+2-May-07	100.39
+3-May-07	100.40
+4-May-07	100.81
 ```
 
 Then to graph dates on the x-axis and prices on the y with the default line chart, we simply do:
 
 ```bash
-suave stocks.tsv 
+suave example-data/stocks.tsv 
 ```
 ![linechart](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/line-chart.jpg)
 
 ### Multiple series 
 And if there were multiple stocks we wanted to graph (multiple lines), we'd format the data like this:
 
-stocks.tsv
+`cat example-data/multi-series.tsv | head -n 10`
+
 ```
 date	APPL	TWTTR	FBX
 20111001	63.4	62.7	72.2
@@ -74,7 +83,7 @@ suave stocks.tsv
 
 ![multiseries](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/multi-series-line-chart.jpg)
 
-if we wanted a scatter plot instead, we'd simply do:
+if we wanted a scatter plot of the same data instead, we'd simply do:
 ```bash
 suave stocks.tsv --chart scatter
 ```
@@ -83,7 +92,7 @@ suave stocks.tsv --chart scatter
 
 ### Histograms
 
-Assume we have a tsv file containing 1 column of data: 
+Histograms require that your data be in a single column, like so: 
 
 `cat example-data/hist.tsv | head -n 10`
 
@@ -100,7 +109,7 @@ Randoms
 2.9494573633563905
 ```
 
-Then we can get a histogram easily:
+Then we can get a histogram easily with:
 `suave example-data/hist.tsv --chart histogram`
 
 ![histogram](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/histogram.jpg)
