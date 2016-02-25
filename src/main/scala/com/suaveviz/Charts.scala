@@ -43,7 +43,7 @@ object Charts {
     ${legend(data)}
 
     var chart = new Suave.BarChart("#chart", {
-     ticks: ${options.ticks}
+      layout: "${options.layout}"
     })
 
     chart.draw({ 

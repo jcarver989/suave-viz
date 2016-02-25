@@ -28,7 +28,7 @@ class DataSetTest extends FlatSpec with Matchers {
 
   "A data set" should "parse some TSV input data" in {
     val input = Vector("1\t2\t3", "4\t5\t6", "7\t8\t9")
-    DataSet.parse(input, false).rows shouldBe Vector(
+    DataSet.parse(input, false, "\t").rows shouldBe Vector(
       Vector("1", "2", "3"),
       Vector("4", "5", "6"),
       Vector("7", "8", "9"))
@@ -36,7 +36,7 @@ class DataSetTest extends FlatSpec with Matchers {
 
   "A data set" should "parse some TSV input data with a header line" in {
     val input = Vector("n1\tn2\tn3", "1\t2\t3", "4\t5\t6", "7\t8\t9")
-    val data = DataSet.parse(input, true)
+    val data = DataSet.parse(input, true, "\t")
     data.header shouldBe Some(Vector("n1", "n2", "n3"))
     data.rows shouldBe Vector(
       Vector("1", "2", "3"),

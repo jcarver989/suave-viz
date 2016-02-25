@@ -135,6 +135,12 @@ If `--chart line` is selected, this smooths the chart lines.
 ##### default: 6
 If `--chart line` or `--chart scatter` is selected, this controls how big the circles for points are. 
 
+### Bar chart specific options
+
+#### --horizontal
+##### default: not enabled
+Rotates the bar chart 90deg so the bars extend horizontally instead of vertically. This is useful if you have many bars in your chart. 
+
 ### Histogram specific options:
 
 #### --bins [integer]

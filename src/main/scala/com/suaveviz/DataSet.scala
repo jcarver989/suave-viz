@@ -14,8 +14,8 @@ case class DataSet(rows: Seq[Seq[String]], header: Option[Seq[String]]) {
 }
 
 object DataSet {
-  def parse(lines: Seq[String], hasHeader: Boolean = true): DataSet = {
-    val rows = lines.map { _.split("\t"): Seq[String] }
+  def parse(lines: Seq[String], hasHeader: Boolean = true, delimiter: String): DataSet = {
+    val rows = lines.map { _.split(delimiter): Seq[String] }
     if (hasHeader) DataSet(rows.tail, Some(rows.head)) else DataSet(rows, None)
   }
 }

@@ -21,7 +21,7 @@ object Main extends App {
     case None => (for (ln <- io.Source.stdin.getLines) yield ln).toVector
   }
 
-  val data = DataSet.parse(lines, options.header)
+  val data = DataSet.parse(lines, options.header, options.delimiter)
   val chart = options.chartType match {
     case "line" => Charts.line(data, options)
     case "bar" => Charts.bar(data, options)
