@@ -77,8 +77,9 @@ date	APPL	TWTTR	FBX
 20111009	69.3	56.7	68.8
 ```
 
+Then we'd chart it like so:
 ```
-suave stocks.tsv
+suave example-data/multi-series.tsv
 ```
 
 ![multiseries](https://raw.githubusercontent.com/jcarver989/suave-viz/master/images/multi-series-line-chart.jpg)
