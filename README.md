@@ -119,6 +119,8 @@ Sets the chart type to graph. With the exception of histogram, which expects a s
 ##### default value: false
 If your data does not include a header line (first line is the names of each column), set this flag.
 
+### Line and Scatter chart specific options
+
 #### --ticks [integer]
 ##### default: 10
 Sets how many "ticks" to draw on the x-axis.
