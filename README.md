@@ -111,43 +111,34 @@ Note if you do not provide an input file, Suave Viz will expect you to provide i
 ```
 
 ##### --chart [string]
-###### available values: line, bar, scatter or histogram
-###### default value: line
-Sets the chart type to graph. With the exception of histogram, which expects a single input column, all chart types expect at least 2 columns (x and y values).
+Sets the chart type to graph. With the exception of histogram, which expects a single input column, all chart types expect at least 2 columns (x and y values). The available chart types are: `line`, `bar`, `scatter` and `histogram`. The default chart type is `line`.
 
 ##### --no-header
-###### default value: false
-If your data does not include a header line (first line is the names of each column), set this flag.
+By default, Suave Viz assumes your input has a header line but if your data does not include a header line (first line is the names of each column), set this flag. 
 
 ### Line and Scatter chart specific options
 
 ##### --ticks [integer]
-###### default: 10
-Sets how many "ticks" to draw on the x-axis.
+Sets how many "ticks" to draw on the x-axis. Defaults to 10.
 
 ##### --dots
-###### default: not enabled
-If `--chart line` is selected, this option draws a circle that shows a tooltip on hover for each point in the chart.
+If `--chart line` is selected, this option draws a circle that shows a tooltip on hover for each point in the chart. Defaults to not enabled.
 
 ##### --smooth
-###### default: not enabled
-If `--chart line` is selected, this smooths the chart lines. 
+If `--chart line` is selected, this smooths the chart lines. Defaults to not enabled.
 
 ##### --dotSize [integer]
-##### default: 6
-If `--chart line` or `--chart scatter` is selected, this controls how big the circles for points are. 
+If `--chart line` or `--chart scatter` is selected, this controls how big the circles for points are. Defaults to 6.
 
 ### Bar chart specific options
 
 ##### --horizontal
-###### default: not enabled
-Rotates the bar chart 90deg so the bars extend horizontally instead of vertically. This is useful if you have many bars in your chart. 
+Rotates the bar chart 90deg so the bars extend horizontally instead of vertically. This is useful if you have many bars in your chart. Defaults to a vertical layout.
 
 ### Histogram specific options:
 
 ##### --bins [integer]
-###### default: 10
-Sets how many evenly spaced buckets to use in the histogram. 
+Sets how many evenly spaced buckets to use in the histogram. Defaults to 10 evenly spaced bins.
 
 ##### --domain [integer, integer]
 Sets the range of the buckets to use, ex `--domain -10, 10` would render a histogram with buckets ranging from -10 to 10. By default Suave Viz will try to guess the domain based on your input data, this option allows finer grained control if you'd like to "zoom in" or "zoom out" on your histogram.  
