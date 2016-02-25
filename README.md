@@ -111,26 +111,26 @@ Note if you do not provide an input file, Suave Viz will expect you to provide i
 ```
 
 ##### --chart [string]
-##### available values: line, bar, scatter or histogram
-##### default value: line
+###### available values: line, bar, scatter or histogram
+###### default value: line
 Sets the chart type to graph. With the exception of histogram, which expects a single input column, all chart types expect at least 2 columns (x and y values).
 
 ##### --no-header
-##### default value: false
+###### default value: false
 If your data does not include a header line (first line is the names of each column), set this flag.
 
 ### Line and Scatter chart specific options
 
 ##### --ticks [integer]
-##### default: 10
+###### default: 10
 Sets how many "ticks" to draw on the x-axis.
 
 ##### --dots
-##### default: not enabled
+###### default: not enabled
 If `--chart line` is selected, this option draws a circle that shows a tooltip on hover for each point in the chart.
 
 ##### --smooth
-##### default: not enabled
+###### default: not enabled
 If `--chart line` is selected, this smooths the chart lines. 
 
 ##### --dotSize [integer]
@@ -140,13 +140,13 @@ If `--chart line` or `--chart scatter` is selected, this controls how big the ci
 ### Bar chart specific options
 
 ##### --horizontal
-##### default: not enabled
+###### default: not enabled
 Rotates the bar chart 90deg so the bars extend horizontally instead of vertically. This is useful if you have many bars in your chart. 
 
 ### Histogram specific options:
 
 ##### --bins [integer]
-##### default: 10
+###### default: 10
 Sets how many evenly spaced buckets to use in the histogram. 
 
 ##### --domain [integer, integer]
