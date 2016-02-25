@@ -112,6 +112,9 @@ Note if you do not provide an input file, Suave Viz will expect you to provide i
 ##### --chart [line, bar, scatter, histogram]
 Sets the chart type to graph. With the exception of histogram, which expects a single input column, all chart types expect at least 2 columns (x and y values). The available chart types are: `line`, `bar`, `scatter` and `histogram`. The default chart type is `line`.
 
+##### --delimiter [string]
+Use this to specify your column separator, ex `"\t"` for TSV `","` for CSV etc. This defaults to TSV data, i.e. `\t`
+
 ##### --no-header
 By default, Suave Viz assumes your input has a header line but if your data does not include a header line (first line is the names of each column), set this flag. 
 
