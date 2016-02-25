@@ -1,11 +1,13 @@
 # Suave Viz
 
 ## Visualize any dataset in seconds
+
+![example](https://raw.githubusercontent.com/jcarver989/suave-viz/master/suave-viz.gif)
+
 Suave Viz exists because there's a lack of good tools for exploratory data visualization. Existing tools require way too much effort to get a decent chart (ahem...ggplot) or trap you in some proprietary vendor's crappy dashboard UI.
 
 Suave Viz solves that pain by giving you a dead-simple command-line tool for data visualization. Just pass some data in TSV format and Suave Viz opens a great looking, interactive chart in your browser. 
 
-![example](https://raw.githubusercontent.com/jcarver989/suave-viz/master/suave-viz.gif)
 
 It's built on [Suave Charts](http://suavecharts.com) & D3.js.
 
