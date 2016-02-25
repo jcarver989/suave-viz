@@ -141,3 +141,11 @@ Sets how many evenly spaced buckets to use in the histogram. Defaults to 10 even
 
 ##### --domain [integer, integer]
 Sets the range of the buckets to use, ex `--domain -10, 10` would render a histogram with buckets ranging from -10 to 10. By default Suave Viz will try to guess the domain based on your input data, this option allows finer grained control if you'd like to "zoom in" or "zoom out" on your histogram.  
+
+
+## License
+Suave Viz is available under two licenses depending on the use case:
+For non-commerical purposes Suave Viz is available under the [Creative Commons Attribution-NonCommercial 4.0 license](http://creativecommons.org/licenses/by-nc/4.0/). 
+
+For commercial use cases send us an email with your use case to suavecharts@gmail.com to get more information.  
+
