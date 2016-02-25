@@ -47,7 +47,7 @@ Then to graph dates on the x-axis and prices on the y with the default line char
 suave stocks.tsv 
 ```
 
-### Multiple series chart
+### Multiple series 
 And if there were multiple stocks we wanted to graph (multiple lines), we'd format the data like this:
 
 stocks.tsv
