@@ -86,7 +86,7 @@ suave docs/example-data/multi-series.tsv
 
 if we wanted a scatter plot of the same data instead, we'd simply do:
 ```bash
-suave stocks.tsv --chart scatter
+suave example-data/multi-series.tsv --chart scatter
 ```
 
 ![scatter](https://raw.githubusercontent.com/jcarver989/suave-viz/master/docs/images/scatter.jpg)
