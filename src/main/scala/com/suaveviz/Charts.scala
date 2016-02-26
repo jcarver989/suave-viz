@@ -58,13 +58,14 @@ object Charts {
   def line(data: DataSet, options: ChartOptions): String = {
     val columns = data.transpose
     val xLabels = columns.rows(0).map { "'" + _ + "'" }.mkString(",")
+    val seriesLabels = data.header.getOrElse(Seq())
 
-    // assume 1st cell is the label, so drop it
-    val seriesLabels = data.header.get
+    // assume 1st row contains the x-labels, so drop it
     val lines = columns.rows.zipWithIndex.drop(1).map {
       case (row, i) =>
+        val label = if (seriesLabels.isEmpty) s"line-${i - 1}" else seriesLabels(i)
         s"""{
-        label: '${seriesLabels(i)}', // name of this column (header row)
+        label: '${label}', // name of this column (header row)
         values: [${row.mkString(",")}],
         dots: ${options.dots},
         smooth: ${options.smooth}
@@ -78,7 +79,7 @@ object Charts {
     var chart = new Suave.LineChart(
     "#chart", 
     { 
-      //ticks: ${options.ticks},
+      ticks: ${options.ticks},
       dotSize: ${options.dotSize},
       xScale: "${options.x}"
     })
@@ -93,15 +94,15 @@ object Charts {
   def scatter(data: DataSet, options: ChartOptions): String = {
     val columns = data.transpose
     val xLabels = columns.rows(0).map { "'" + _ + "'" }.mkString(",")
-    val seriesLabels = data.header.get
+    val seriesLabels = data.header.getOrElse(Seq())
     val lines = columns.rows.zipWithIndex.drop(1).map {
       case (row, i) =>
+        val label = if (seriesLabels.isEmpty) s"line-${i - 1}" else seriesLabels(i)
         s"""{
-        label: '${seriesLabels(i)}', // name of this column (header row)
+        label: '${label}', // name of this column (header row)
         values: [${row.mkString(",")}],
         dots: true,
-        line: false,
-        xScale: "${options.x}"
+        line: false
       }
       """
     }.mkString(",\n")
@@ -113,7 +114,8 @@ object Charts {
     "#chart", 
     { 
       ticks: ${options.ticks},
-      dotSize: ${options.dotSize}
+      dotSize: ${options.dotSize},
+      xScale: "${options.x}"
     })
 
     chart.draw({ 

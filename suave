@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-SUAVE_VERSION=1.0.0
+SUAVE_VERSION=1.1.0
 java -jar $SUAVE_HOME/suaveviz-assembly-$SUAVE_VERSION.jar "$@"

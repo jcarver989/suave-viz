@@ -12,7 +12,8 @@ case class ChartOptions(
   header: Boolean,
   delimiter: String,
   layout: String,
-  x: String)
+  x: String,
+  isLocal: Boolean)
 
 object ChartOptions {
   val validOptions = Vector(
@@ -26,7 +27,8 @@ object ChartOptions {
     "no-header",
     "delimiter",
     "horizontal",
-    "x")
+    "x",
+    "local")
 
   def parse(args: Array[String]): ChartOptions = {
     val options = new OptionParser(validOptions).parse(args)
@@ -50,7 +52,8 @@ object ChartOptions {
       header = !(options.get("no-header").map { _.toBoolean }.getOrElse(false)),
       delimiter = options.get("delimiter").getOrElse("\t"),
       layout = if (options.get("horizontal").map {_.toBoolean }.getOrElse(false)) "horizontal" else "vertical",
-      x = options.getOrElse("x", "ordinal")
+      x = options.getOrElse("x", "ordinal"),
+      isLocal = options.get("local").map { _.toBoolean }.getOrElse(false)
     )
   }
 }

@@ -30,6 +30,6 @@ object Main extends App {
     case _ => sys.error("unsupported chart type")
   }
 
-  val chartCode = Template.render(chart)
+  val chartCode = Template.render(chart, options.isLocal)
   saveAndOpen(chartCode)
 }
