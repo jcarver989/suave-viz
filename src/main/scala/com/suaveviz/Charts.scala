@@ -78,8 +78,9 @@ object Charts {
     var chart = new Suave.LineChart(
     "#chart", 
     { 
-      ticks: ${options.ticks},
-      dotSize: ${options.dotSize}
+      //ticks: ${options.ticks},
+      dotSize: ${options.dotSize},
+      xScale: "${options.x}"
     })
 
     chart.draw({ 
@@ -99,7 +100,8 @@ object Charts {
         label: '${seriesLabels(i)}', // name of this column (header row)
         values: [${row.mkString(",")}],
         dots: true,
-        line: false
+        line: false,
+        xScale: "${options.x}"
       }
       """
     }.mkString(",\n")

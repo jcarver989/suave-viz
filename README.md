@@ -164,6 +164,9 @@ By default, Suave Viz assumes your input has a header line but if your data does
 
 ### Line and Scatter chart specific options
 
+##### --x [linear, ordinal]
+Set's the chart's x-axis to the specified type. `log` and `time` will be supported very soon. Defaults to `ordinal`.
+
 ##### --ticks [integer]
 Sets how many "ticks" to draw on the x-axis. Defaults to 10.
 

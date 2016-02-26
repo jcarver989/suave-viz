@@ -11,7 +11,8 @@ case class ChartOptions(
   inputFile: Option[String],
   header: Boolean,
   delimiter: String,
-  layout: String)
+  layout: String,
+  x: String)
 
 object ChartOptions {
   val validOptions = Vector(
@@ -24,7 +25,8 @@ object ChartOptions {
     "bins",
     "no-header",
     "delimiter",
-    "horizontal")
+    "horizontal",
+    "x")
 
   def parse(args: Array[String]): ChartOptions = {
     val options = new OptionParser(validOptions).parse(args)
@@ -47,7 +49,8 @@ object ChartOptions {
       inputFile = options.get("input"),
       header = !(options.get("no-header").map { _.toBoolean }.getOrElse(false)),
       delimiter = options.get("delimiter").getOrElse("\t"),
-      layout = if (options.get("horizontal").map {_.toBoolean }.getOrElse(false)) "horizontal" else "vertical"
+      layout = if (options.get("horizontal").map {_.toBoolean }.getOrElse(false)) "horizontal" else "vertical",
+      x = options.getOrElse("x", "ordinal")
     )
   }
 }
