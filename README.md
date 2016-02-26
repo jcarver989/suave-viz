@@ -32,7 +32,7 @@ export PATH=$PATH:~/suave-viz-1.0.0/bin
 That's it. You now have the `suave` command on your path
 
 ## Basic Usage
-All the examples below use data found in the example-data directory. So you should be able to run these examples yourself.
+All the examples below use data found in the `docs/example-data` directory. So you should be able to run these examples yourself.
 
 ### Your first chart
 Assume we have a TSV file of stock data: stocks.tsv
