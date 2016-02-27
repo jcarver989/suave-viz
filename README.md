@@ -164,8 +164,23 @@ By default, Suave Viz assumes your input has a header line but if your data does
 
 ### Line and Scatter chart specific options
 
-##### --x [linear, ordinal]
-Set's the chart's x-axis to the specified type. `log` and `time` will be supported very soon. Defaults to `ordinal`.
+##### --x [linear, log, ordinal, time]
+Set's the chart's x-axis to the specified type. This will default to `time` if your data is formatted as a date (see below) and `ordinal` for everything else.
+
+For `time` to be auto selected your dates must be in one of the following formats: 
+
+- `dd-MMM-yy`
+- `yyyy-MM-dd`
+- `yyyy/MM/dd`
+- `MM-dd-yyyy`
+- `MM/dd/yyyy`
+
+If `log` is selected the axis will use a base 10 scale. Since log is not defined at 0, your x-column (1st column in your data) cannot contain 0's. 
+
+##### --y [linear, log]
+Set's the chart's y-axis to the specified type. Defaults to `linear`.
+
+If `log` is selected the axis will use a base 10 scale. Since log() is not defined at 0, your y-column(s) (any column in your data after the 1st) cannot contain 0's. 
 
 ##### --ticks [integer]
 Sets how many "ticks" to draw on the x-axis. Defaults to 10.
