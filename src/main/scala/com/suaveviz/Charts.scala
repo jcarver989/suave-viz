@@ -21,7 +21,7 @@ object Charts {
     """
   }
 
-  def histogram(data: DataSet, options: ChartOptions): String = {
+  def histogram(data: DataSet, options: HistogramOptions): String = {
     val values = data.transpose.rows(0)
     val domain = options.domain.getOrElse((values.min, values.max + 1))
 
@@ -34,7 +34,7 @@ object Charts {
     """
   }
 
-  def bar(data: DataSet, options: ChartOptions): String = {
+  def bar(data: DataSet, options: BarOptions): String = {
     // assume 1st row is now the labels
     val labels = data.rows.map { r => "'" + r(0) + "'" }.mkString(",")
     val bars = data.rows.map { barGroup => s"[${barGroup.drop(1).mkString(",")}]" }
@@ -55,9 +55,22 @@ object Charts {
     """
   }
 
-  def line(data: DataSet, options: ChartOptions): String = {
+  def line(data: DataSet, options: LineAndScatterOptions): String = {
     val columns = data.transpose
-    val xLabels = columns.rows(0).map { "'" + _ + "'" }.mkString(",")
+    val xs = columns.rows(0)
+
+    val (xScale, xLabels) = options.xScale match {
+      case "auto" | "time" =>
+        Dates.attemptToParse(xs) match {
+          case dates if !dates.isEmpty => ("time", dates.map { _.getTime })
+          case _ => ("ordinal", columns.rows(0).map { "'" + _ + "'" })
+        }
+
+      case _ => (options.xScale, xs.map { "'" + _ + "'" })
+    }
+
+    val yScale = if (options.yScale == "auto") "linear" else options.yScale
+
     val seriesLabels = data.header.getOrElse(Seq())
 
     // assume 1st row contains the x-labels, so drop it
@@ -67,8 +80,9 @@ object Charts {
         s"""{
         label: '${label}', // name of this column (header row)
         values: [${row.mkString(",")}],
-        dots: ${options.dots},
-        smooth: ${options.smooth}
+        dots: ${if (options.isScatter) true else options.dots},
+        smooth: ${options.smooth},
+        line: ${!options.isScatter}
       }
       """
     }.mkString(",\n")
@@ -81,45 +95,12 @@ object Charts {
     { 
       ticks: ${options.ticks},
       dotSize: ${options.dotSize},
-      xScale: "${options.x}"
+      xScale: "${xScale}",
+      yScale: "${yScale}"
     })
 
     chart.draw({ 
-      labels: [${xLabels}],
-      lines: [${lines}]
-    })
-    """
-  }
-
-  def scatter(data: DataSet, options: ChartOptions): String = {
-    val columns = data.transpose
-    val xLabels = columns.rows(0).map { "'" + _ + "'" }.mkString(",")
-    val seriesLabels = data.header.getOrElse(Seq())
-    val lines = columns.rows.zipWithIndex.drop(1).map {
-      case (row, i) =>
-        val label = if (seriesLabels.isEmpty) s"line-${i - 1}" else seriesLabels(i)
-        s"""{
-        label: '${label}', // name of this column (header row)
-        values: [${row.mkString(",")}],
-        dots: true,
-        line: false
-      }
-      """
-    }.mkString(",\n")
-
-    s"""
-    ${legend(data)}
-
-    var chart = new Suave.LineChart(
-    "#chart", 
-    { 
-      ticks: ${options.ticks},
-      dotSize: ${options.dotSize},
-      xScale: "${options.x}"
-    })
-
-    chart.draw({ 
-      labels: [${xLabels}],
+      labels: [${xLabels.mkString(",")}],
       lines: [${lines}]
     })
     """

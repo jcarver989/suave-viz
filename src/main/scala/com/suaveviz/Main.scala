@@ -15,19 +15,19 @@ object Main extends App {
     Desktop.getDesktop().browse(new URI(s"file://${url}"))
   }
 
-  val options = ChartOptions.parse(args)
+  val (options, chartOptions) = Options.parse(args)
+
   val lines = options.inputFile match {
     case Some(f) => io.Source.fromFile(f).getLines.toVector
     case None => (for (ln <- io.Source.stdin.getLines) yield ln).toVector
   }
 
   val data = DataSet.parse(lines, options.header, options.delimiter)
-  val chart = options.chartType match {
-    case "line" => Charts.line(data, options)
-    case "bar" => Charts.bar(data, options)
-    case "histogram" => Charts.histogram(data, options)
-    case "scatter" => Charts.scatter(data, options)
-    case _ => sys.error("unsupported chart type")
+ 
+  val chart = chartOptions match {
+    case o: BarOptions => Charts.bar(data, o)
+    case o: HistogramOptions => Charts.histogram(data, o)
+    case o: LineAndScatterOptions => Charts.line(data, o)
   }
 
   val chartCode = Template.render(chart, options.isLocal)

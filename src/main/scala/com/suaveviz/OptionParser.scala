@@ -4,7 +4,7 @@ package com.suaveviz
  *  
  *  ./foo file.txt --option1 value1 --option2 => Map("input" -> "file.txt", "option1" -> value1, "option2" -> true) 
   */
-class OptionParser(validOptions: Seq[String]) {
+class OptionParser(validOptions: Set[String]) {
   def parse(args: Array[String]): Map[String, String] = {
     parse(args.toList)
   }
@@ -27,6 +27,6 @@ class OptionParser(validOptions: Seq[String]) {
   }
 
   private def validOption(name: String): Boolean = {
-    name.startsWith("--") && validOptions.exists { o => o == name.drop(2) }
+    name.startsWith("--") && validOptions.contains(name.drop(2))
   }
 }
