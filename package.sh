@@ -4,12 +4,12 @@ sbt clean assembly
 VERSION="1.1.0"
 DIR="suave-viz-$VERSION"
 mkdir -p $DIR/bin
-cp target/scala-2.11/suaveviz-assembly-$VERSION.jar $DIR
+cp target/scala-2.11/suaveviz-assembly-$VERSION.jar $DIR/suaveviz-assembly.jar
 
 SCRIPT=$DIR/bin/suave
 echo "#!/usr/bin/env bash" >> $SCRIPT
 echo "DIR=\"\$( cd \"\$( dirname \"\${BASH_SOURCE[0]}\" )\" && pwd )\"" >> $SCRIPT
-echo "java -jar \$DIR/../suaveviz-assembly-$VERSION.jar \"\$@\"" >> $SCRIPT
+echo "java -jar \$DIR/../suaveviz-assembly.jar \"\$@\"" >> $SCRIPT
 chmod +x $SCRIPT
 
 zip -r suave-viz-$VERSION.zip $DIR
